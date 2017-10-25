@@ -21,20 +21,20 @@ public class Main
 		userMatrix = autopopulate(userDefinedRow,userDefinedColumn);
 		System.out.println("This is the autopopulated matrix:");
 		printMatrix(userMatrix);
-		
-//		System.out.println("Enter the array:");
-//		for(int row = 0;row < userDefinedRow;row ++)
-//		{
-//			for(int column = 0;column < userDefinedColumn;column++)
-//			{
-//				 userMatrix[row][column] = input.nextDouble();
-//				
-//			}
-//		}
-	    Location maxValue = locateLargest(userMatrix);
-	    System.out.println("The location of the largest element is " + maxValue.getMaxValue() +
-	    		" at (" + maxValue.getRow() + ", " + maxValue.getColumn() + ")");
-	
+
+		//		System.out.println("Enter the array:");
+		//		for(int row = 0;row < userDefinedRow;row ++)
+		//		{
+		//			for(int column = 0;column < userDefinedColumn;column++)
+		//			{
+		//				 userMatrix[row][column] = input.nextDouble();
+		//				
+		//			}
+		//		}
+		Location maxValue = locateLargest(userMatrix);
+		System.out.println("The location of the largest element is " + maxValue.getMaxValue() +
+				" at (" + maxValue.getRow() + ", " + maxValue.getColumn() + ")");
+
 	}
 	private static double[][] autopopulate(int x,int y)
 	{
@@ -44,7 +44,7 @@ public class Main
 			for(int column = 0;column < y;column++)
 			{
 				matrix[row][column] = round((double)(Math.random()*100),2);
-				
+
 			}
 		}
 		return matrix;
@@ -62,11 +62,11 @@ public class Main
 		}
 	}
 	private static double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
+		if (places < 0) throw new IllegalArgumentException();
 
-	    BigDecimal bd = new BigDecimal(value);
-	    bd = bd.setScale(places, RoundingMode.HALF_UP);
-	    return bd.doubleValue();
+		BigDecimal bd = new BigDecimal(value);
+		bd = bd.setScale(places, RoundingMode.HALF_UP);
+		return bd.doubleValue();
 	}
 	public static Location locateLargest(double [][] a)
 	{
@@ -76,22 +76,19 @@ public class Main
 		{
 			for(int row = 0;row < a.length;row++)
 			{ 
-				System.out.println("ERROR CHECKING:Entering a new row!"
-						+ "We are in row " + row + ".The max value is " + maxValue);
-				System.out.println("ERROR CHECKING:Entering a new row!"
-						+ "We are in row " + largestLocation.getRow() + " according to location .The max value is " + largestLocation.getMaxValue());
+
 				for(int column = 0;column < a[row].length;column++)
 				{
-				   if(a[row][column] > maxValue)
-				   {
-					   maxValue = a[row][column];
-					   largestLocation.setColumn(column);
-					   largestLocation.setRow(row);
-					   largestLocation.setMaxValue(a[row][column]);
+					if(a[row][column] > maxValue)
+					{
+						maxValue = a[row][column];
+						largestLocation.setColumn(column);
+						largestLocation.setRow(row);
+						largestLocation.setMaxValue(a[row][column]);
 
-				   }
+					}
 				}
-				
+
 			}
 		}
 		else
@@ -101,13 +98,13 @@ public class Main
 				for(int row = 0;row < a.length;row++)
 				{
 					if(a[row][column] > maxValue)
-					   {
-						   maxValue = a[row][column];
-						   largestLocation.setColumn(column);
-						   largestLocation.setRow(row);
-						   largestLocation.setMaxValue(a[row][column]);
+					{
+						maxValue = a[row][column];
+						largestLocation.setColumn(column);
+						largestLocation.setRow(row);
+						largestLocation.setMaxValue(a[row][column]);
 
-					   }
+					}
 				}
 			}
 		}
