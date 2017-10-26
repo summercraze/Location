@@ -1,5 +1,5 @@
 /*
- *This is the main class which has the method which use location to get maximum value
+ *This is the main class which test the method 
  */
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -24,25 +24,25 @@ public class Main
 		double [][] userMatrix = new double [userDefinedRow][userDefinedColumn];
 
 		//this is autopopulate the matrix so user does not have to type the matrix
-//		userMatrix = autopopulate(userDefinedRow,userDefinedColumn);
-//		System.out.println("This is the autopopulated matrix:");
-//		printMatrix(userMatrix);
+		userMatrix = autopopulate(userDefinedRow,userDefinedColumn);
+		System.out.println("This is the autopopulated matrix:");
+		printMatrix(userMatrix);
 
 		//this let user to enter the matrix
-		System.out.println("Enter the array:");
-		for(int row = 0;row < userDefinedRow;row ++)
-		{
-			for(int column = 0;column < userDefinedColumn;column++)
-			{
-				userMatrix[row][column] = input.nextDouble();
-
-			}
-		}
+//		System.out.println("Enter the array:");
+//		for(int row = 0;row < userDefinedRow;row ++)
+//		{
+//			for(int column = 0;column < userDefinedColumn;column++)
+//			{
+//				userMatrix[row][column] = input.nextDouble();
+//
+//			}
+//		}
 		
 		//this uses the function locateLargest to find the largest value of matrix
-		Location maxValue = locateLargest(userMatrix);
-		System.out.println("The location of the largest element is " + maxValue.getMaxValue() +
-				" at (" + maxValue.getRow() + ", " + maxValue.getColumn() + ")");
+		Location maxValue = Location.locateLargest(userMatrix);
+		System.out.println("The location of the largest element is " + maxValue.maxValue +
+				" at (" + maxValue.row + ", " + maxValue.column + ")");
 
 	}
 	
@@ -83,57 +83,5 @@ public class Main
 		BigDecimal bd = new BigDecimal(value);
 		bd = bd.setScale(places, RoundingMode.HALF_UP);
 		return bd.doubleValue();
-	}
-	
-	//this is the function that locate the largest
-	public static Location locateLargest(double [][] a)
-	{
-		//this use location object to get location of max value
-		Location largestLocation = new Location();
-		//set up the key for max value
-		double maxValue = a[0][0];
-		
-		/*
-		 *so this is the idea of this main code:
-		 *it checks which is smaller number:column or row
-		 *if row is smaller,we will break the matrix to rows so we have do less loops
-		 *and column is the same
-		 *in each comparison,we will compare the number with the key,if the key is smaller,the new number
-		 *will be the new key
-		 */
-		if(a.length <= a[0].length)
-		{
-			for(int row = 0;row < a.length;row++)
-			{ 
-				for(int column = 0;column < a[row].length;column++)
-				{ 
-					if(a[row][column] > maxValue)
-					{
-						maxValue = a[row][column];
-						largestLocation.setColumn(column);
-						largestLocation.setRow(row);
-						largestLocation.setMaxValue(a[row][column]);
-					}
-				}
-
-			}
-		}
-		else
-		{
-			for(int column = 0;column < a[0].length;column++)
-			{
-				for(int row = 0;row < a.length;row++)
-				{
-					if(a[row][column] > maxValue)
-					{
-						maxValue = a[row][column];
-						largestLocation.setColumn(column);
-						largestLocation.setRow(row);
-						largestLocation.setMaxValue(a[row][column]);
-					}
-				}
-			}
-		}
-		return largestLocation;
 	}
 }
